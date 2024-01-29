@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Publicators</title>
+    <style>
+
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            text-align: center;
+            background-color: rgb(0, 0, 0);
+        }
+
+        .foreground, .background {
+            position: absolute;
+            overflow: hidden;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .foreground img, .background img {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+
+        .foreground {
+            z-index: 99999;
+        }
+
+        .background {
+            z-index: 1;
+        }
+
+        .pupil {
+            width: 120px;
+            height: 120px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .pupil2 {
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 6;
+            top: 50%;
+            left: 50%;
+            border: 4px solid #fff;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: normal;
+            
+        }
+        .pupil2:hover {
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+
+        .eye-container {
+            position: absolute;
+            color: rgb(0, 0, 0);
+            top: 50%;
+            left: 50%;
+            z-index: 3;
+            transform: translate(-50%, -50%);
+        }
+
+        .eye {
+            width: 250px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light{
+            position: fixed;
+        }
+
+        .light-off .light {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(circle at var(--x) var(--y) , transparent 10%, rgb(0, 0, 0) 20%);
+        }
+
+        .button-30 {
+        align-items: center;
+        appearance: none;
+        background-color: #FCFCFD;
+        border-radius: 4px;
+        border-width: 0;
+        box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: #36395A;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: 'Courier New', Courier, monospace;
+        height: 28px;
+        justify-content: center;
+        line-height: 1;
+        list-style: none;
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        text-align: left;
+        text-decoration: none;
+        transition: box-shadow .15s,transform .15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow,transform;
+        font-size: 18px;
+        }
+
+        .button-30:focus {
+        box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+        }
+
+        .button-30:hover {
+        box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+        transform: translateY(-2px);
+        }
+
+        .button-30:active {
+        box-shadow: #D6D6E7 0 3px 7px inset;
+        transform: translateY(2px);
+        }
+
+        .pp {
+            color: #D6D6E7;
+            visibility: hidden;
+        }
+
+        .onp .pp {
+            color: #D6D6E7;
+            visibility: visible;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!--
+        Hi again, this is just an easter egg, anything in here is not part of the event.
+    -->
+    
+    <div class="light"></div>
+    <div class="foreground" >
+        <img class="foregroundimg" src="https://cdn.discordapp.com/attachments/1006249405013307413/1201533537887723540/publicator_eyelid.png?ex=65ca2a4e&is=65b7b54e&hm=51a3243921cf356daea37d85d9abd7141fb821bcb68a45887a5a0d8f408b88bd&">
+    </div>
+    <div class="eye-container" id="eye-container">
+        <div class="eye" id="eye">
+           
+        </div>
+    </div>
+            <div class="main_pupil" id="main_pupil">
+                <div class="pupil2"></div>
+                <div class="pupil"></div></div>
+            </div>
+    <div class="background" >
+        <img class="backgroundimg" src="https://cdn.discordapp.com/attachments/1006249405013307413/1201533518270967858/publicator_eyecrp.png?ex=65ca2a4a&is=65b7b54a&hm=7d060a121e299f73672a2adb719aeec1058b1cbb96fd0633079136d10b75b852&">
+
+    </div>
+    <p class="pp">01010100 01101000 01101001 01110011 00100000 01101001 01110011 00100000 01100001 01101110 00100000 01100101 01100001 01110011 01110100 01100101 01110010 00100000 01100101 01100111 01100111 00100000 01101100 01101111 01101100 00100001 00100000 </p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <button class="button-30" onclick="toggleLightEffect()">on/off</button>
+
+    <script>
+        var pos = document.documentElement;
+    
+        function handleMove(event) {
+            var clientX, clientY;
+    
+            if (event.type === "mousemove") {
+                clientX = event.clientX;
+                clientY = event.clientY;
+            } else if (event.type === "touchmove") {
+                clientX = event.touches[0].clientX;
+                clientY = event.touches[0].clientY;
+            }
+    
+            pos.style.setProperty('--x', clientX + 'px');
+            pos.style.setProperty('--y', clientY + 'px');
+    
+            var eye = document.getElementById("eye");
+            var pupilContainer = document.getElementById("main_pupil");
+            var pupil = document.querySelector(".pupil");
+            var pupil2 = document.querySelector(".pupil2");
+    
+            var eyeRect = eye.getBoundingClientRect();
+    
+            var offsetX = (clientX - eyeRect.left - eyeRect.width / 2) / (eyeRect.width / 2);
+            var offsetY = (clientY - eyeRect.top - eyeRect.height / 2) / (eyeRect.height / 2);
+    
+            var angle = Math.atan2(offsetY, offsetX);
+    
+            var distance = Math.min(eyeRect.width / 4, eyeRect.height / 4);
+    
+            var pupilX = Math.cos(angle) * distance;
+            var pupilY = Math.sin(angle) * distance;
+    
+            pupil.style.transform = "translate(-50%, -50%) translate(" + pupilX + "px, " + pupilY + "px)";
+            pupil2.style.transform = "translate(-50%, -50%) translate(" + pupilX + "px, " + pupilY + "px)";
+        }
+    
+        document.addEventListener("mousemove", handleMove);
+        document.addEventListener("touchmove", handleMove);
+    
+        function toggleLightEffect() {
+            document.body.classList.toggle("light-off");
+            document.body.classList.toggle("onp");
+        }
+    </script>
+    
+    
+    
+</body>
+</html>
