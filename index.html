@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Publicators</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/attachments/1006249405013307413/1201556977445261362/scopes_publicators_logyo.png?ex=65ca4023&is=65b7cb23&hm=df981996154d103b1c2325f0fa5af0b740b8479053f45b8875b066256424867e&">
     <style>
 
         html, body {
@@ -35,7 +36,7 @@
 
 
         .foreground {
-            z-index: 99999;
+            z-index: 6;
         }
 
         .background {
@@ -107,6 +108,7 @@
         }
 
         .button-30 {
+        z-index: 1;    
         align-items: center;
         appearance: none;
         background-color: #FCFCFD;
@@ -126,8 +128,8 @@
         padding-left: 16px;
         padding-right: 16px;
         position: relative;
-        text-align: left;
         text-decoration: none;
+        transform: translateX(-50%);  /* Center horizontally */
         transition: box-shadow .15s,transform .15s;
         user-select: none;
         -webkit-user-select: none;
@@ -135,6 +137,9 @@
         white-space: nowrap;
         will-change: box-shadow,transform;
         font-size: 18px;
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
         }
 
         .button-30:focus {
@@ -143,12 +148,12 @@
 
         .button-30:hover {
         box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-        transform: translateY(-2px);
+        transform: translateY(-2px) translateX(-50%);
         }
 
         .button-30:active {
         box-shadow: #D6D6E7 0 3px 7px inset;
-        transform: translateY(2px);
+        transform: translateY(2px) translateX(-50%);
         }
 
         .pp {
@@ -188,7 +193,6 @@
 
     </div>
     <p class="pp">01010100 01101000 01101001 01110011 00100000 01101001 01110011 00100000 01100001 01101110 00100000 01100101 01100001 01110011 01110100 01100101 01110010 00100000 01100101 01100111 01100111 00100000 01101100 01101111 01101100 00100001 00100000 </p>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <button class="button-30" onclick="toggleLightEffect()">on/off</button>
 
     <script>
